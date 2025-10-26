@@ -1,19 +1,19 @@
 import { Linkedin, Twitter, Github, Instagram } from "lucide-react"
+import { ScrollFadeIn } from "@/components/scroll-fade-in"
 
 export function Footer() {
   return (
     <footer className="bg-foreground text-background py-16">
       <div className="container mx-auto px-4">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
-          <div>
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-xl">DS</span>
+        <ScrollFadeIn threshold={0.12}>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+            <div>
+              <div className="flex items-center gap-2 mb-4">
+                <img src="/arumisoft-logo.png" alt="Arumisoft" className="h-10 w-auto" />
+                <span className="font-bold text-xl">Arumisoft</span>
               </div>
-              <span className="font-bold text-xl">DevSolutions</span>
+              <p className="text-background/70 leading-relaxed">Transformando ideas en software excepcional desde 2014</p>
             </div>
-            <p className="text-background/70 leading-relaxed">Transformando ideas en software excepcional desde 2014</p>
-          </div>
 
           <div>
             <h4 className="font-bold mb-4">Servicios</h4>
@@ -42,7 +42,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="font-bold mb-4">Empresa</h4>
+            <h4 className="font-bold mb-4">Arumisoft</h4>
             <ul className="space-y-2 text-background/70">
               <li>
                 <a href="#" className="hover:text-primary transition-colors">
@@ -96,10 +96,11 @@ export function Footer() {
               </a>
             </div>
           </div>
-        </div>
+          </div>
+        </ScrollFadeIn>
 
         <div className="border-t border-background/20 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-background/70 text-sm">
-          <p>© 2025 DevSolutions. Todos los derechos reservados.</p>
+          <p>© 2025 Arumisoft. Todos los derechos reservados.</p>
           <div className="flex gap-6">
             <a href="#" className="hover:text-primary transition-colors">
               Privacidad

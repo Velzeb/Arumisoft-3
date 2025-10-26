@@ -1,45 +1,13 @@
 // @ts-nocheck
 "use client"
 
-import { Canvas } from "@react-three/fiber"
-import { OrbitControls, Sphere, MeshDistortMaterial, Float } from "@react-three/drei"
+import dynamic from "next/dynamic"
+import React, { Suspense } from "react"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Code2, Sparkles } from "lucide-react"
 import Link from "next/link"
 
-function AnimatedSphere() {
-  return (
-    <Float speed={2} rotationIntensity={1} floatIntensity={2}>
-      <Sphere args={[1, 50, 100]} scale={2.5}>
-        <MeshDistortMaterial
-          color="#f17f26"
-          attach="material"
-          distort={0.4}
-          speed={2}
-          roughness={0.2}
-          metalness={0.8}
-        />
-      </Sphere>
-    </Float>
-  )
-}
-
-function AnimatedSphere2() {
-  return (
-    <Float speed={1.5} rotationIntensity={0.8} floatIntensity={1.5}>
-      <Sphere args={[1, 100, 100]} scale={1.8} position={[3, -1, -2]}>
-        <MeshDistortMaterial
-          color="#80aa3c"
-          attach="material"
-          distort={0.3}
-          speed={1.5}
-          roughness={0.3}
-          metalness={0.6}
-        />
-      </Sphere>
-    </Float>
-  )
-}
+// ...existing code...
 
 export function Hero3D() {
   return (
@@ -90,67 +58,58 @@ export function Hero3D() {
         </svg>
       </div>
 
-      <div className="absolute inset-0 z-10">
-        <Canvas dpr={[1, 1.5]} camera={{ position: [0, 0, 5], fov: 75 }} className="z-10">
-          <ambientLight intensity={0.5} />
-          <directionalLight position={[10, 10, 5]} intensity={1} />
-          <pointLight position={[-10, -10, -5]} intensity={0.5} color="#80aa3c" />
-          <AnimatedSphere />
-          <AnimatedSphere2 />
-          <OrbitControls enableZoom={false} enablePan={false} autoRotate autoRotateSpeed={0.5} />
-        </Canvas>
-      </div>
+      {/* Layout: two columns - left (content), right (visual). Canvas is hidden on small screens for performance */}
+      <div className="container mx-auto px-4 relative z-30">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div className="lg:col-span-6 text-left">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-8 animate-fade-in backdrop-blur-sm">
+              <Sparkles className="w-4 h-4 text-primary" />
+              <span className="text-sm font-medium">Innovación en cada línea de código</span>
+            </div>
 
-      {/* Haikei-style SVG background placed above the Canvas for a nicer hero look */}
-  {/* removed radial-gradient overlays to reveal the orange SVG */}
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight animate-fade-in-up">
+              Transformamos tus <span className="text-primary">ideas</span> en
+              <span className="ml-2 bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent"> software</span> excepcional
+            </h1>
 
-  <div className="container mx-auto px-4 relative z-30">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-8 animate-fade-in backdrop-blur-sm">
-            <Sparkles className="w-4 h-4 text-primary" />
-            <span className="text-sm font-medium">Innovación en cada línea de código</span>
+            <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl leading-relaxed">
+              Desarrollamos soluciones tecnológicas personalizadas que impulsan el crecimiento de tu negocio con las
+              últimas tecnologías del mercado
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-start items-center animate-fade-in-up">
+              <Link href="/contacto">
+                <Button size="lg" className="text-lg px-8">Comenzar Proyecto <ArrowRight className="ml-2 w-5 h-5" /></Button>
+              </Link>
+              <Link href="/portafolio">
+                <Button size="lg" variant="outline" className="text-lg px-8 border-2 bg-background/50 backdrop-blur-sm"><Code2 className="mr-2 w-5 h-5"/>Ver Portafolio</Button>
+              </Link>
+            </div>
+
+            <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6">
+              {[
+                { number: "150+", label: "Proyectos Completados" },
+                { number: "98%", label: "Clientes Satisfechos" },
+                { number: "50+", label: "Desarrolladores" },
+                { number: "10+", label: "Años de Experiencia" },
+              ].map((stat, index) => (
+                <div key={index} className="text-center backdrop-blur-sm bg-background/30 rounded-lg p-4">
+                  <div className="text-2xl md:text-3xl font-bold text-primary mb-1">{stat.number}</div>
+                  <div className="text-sm text-muted-foreground">{stat.label}</div>
+                </div>
+              ))}
+            </div>
           </div>
 
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 text-balance leading-tight animate-fade-in-up">
-            Transformamos tus <span className="text-primary">ideas</span> en{" "}
-            <span className="text-secondary">software</span> excepcional
-          </h1>
-
-          <p className="text-xl md:text-2xl text-muted-foreground mb-12 text-pretty max-w-3xl mx-auto leading-relaxed animate-fade-in-up animation-delay-200">
-            Desarrollamos soluciones tecnológicas personalizadas que impulsan el crecimiento de tu negocio con las
-            últimas tecnologías del mercado
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in-up animation-delay-400">
-            <Link href="/contacto">
-              <Button size="lg" className="bg-primary hover:bg-primary/90 text-lg px-8 group">
-                Comenzar Proyecto
-                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </Button>
-            </Link>
-            <Link href="/portafolio">
-              <Button size="lg" variant="outline" className="text-lg px-8 border-2 bg-background/50 backdrop-blur-sm">
-                <Code2 className="mr-2 w-5 h-5" />
-                Ver Portafolio
-              </Button>
-            </Link>
-          </div>
-
-          <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 animate-fade-in-up animation-delay-600">
-            {[
-              { number: "150+", label: "Proyectos Completados" },
-              { number: "98%", label: "Clientes Satisfechos" },
-              { number: "50+", label: "Desarrolladores" },
-              { number: "10+", label: "Años de Experiencia" },
-            ].map((stat, index) => (
-              <div key={index} className="text-center backdrop-blur-sm bg-background/30 rounded-lg p-4">
-                <div className="text-3xl md:text-4xl font-bold text-primary mb-2">{stat.number}</div>
-                <div className="text-sm text-muted-foreground">{stat.label}</div>
-              </div>
-            ))}
+          <div className="lg:col-span-6 hidden lg:block">
+            <Suspense fallback={<div className="w-full h-[420px] rounded-2xl bg-background/50" /> }>
+              <DynamicHeroCanvas />
+            </Suspense>
           </div>
         </div>
       </div>
     </section>
   )
 }
+
+const DynamicHeroCanvas = dynamic(() => import("./hero-canvas"), { ssr: false })

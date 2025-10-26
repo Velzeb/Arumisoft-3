@@ -10,14 +10,16 @@
   --card-foreground: oklch(0.15 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.15 0 0);
-  --primary: oklch(0.62 0.18 45);
-  --primary-foreground: oklch(1 0 0);
+  /* Primary: Arumisoft orange */
+  --primary: #f17f26;
+  --primary-foreground: #ffffff;
   --secondary: oklch(0.58 0.12 125);
   --secondary-foreground: oklch(1 0 0);
   --muted: oklch(0.96 0.005 45);
   --muted-foreground: oklch(0.45 0 0);
-  --accent: oklch(0.62 0.18 45);
-  --accent-foreground: oklch(1 0 0);
+  /* Accent: Arumisoft green */
+  --accent: #80aa3c;
+  --accent-foreground: #ffffff;
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(1 0 0);
   --border: oklch(0.9 0.01 45);
@@ -37,6 +39,28 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  /* Design tokens */
+  --container-max-width: 1200px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 32px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --elevation-1: 0 1px 3px rgba(0,0,0,0.06);
+  --elevation-2: 0 4px 12px rgba(0,0,0,0.08);
+  --elevation-3: 0 10px 30px rgba(0,0,0,0.12);
+}
+
+body {
+  font-family: 'Poppins', var(--font-poppins), 'Geist', 'Geist Mono', sans-serif;
+}
+
+/* Smooth scrolling for anchor links */
+html {
+  scroll-behavior: smooth;
 }
 
 .dark {
@@ -46,14 +70,14 @@
   --card-foreground: oklch(0.98 0 0);
   --popover: oklch(0.13 0 0);
   --popover-foreground: oklch(0.98 0 0);
-  --primary: oklch(0.62 0.18 45);
-  --primary-foreground: oklch(1 0 0);
+  --primary: #f17f26;
+  --primary-foreground: #ffffff;
   --secondary: oklch(0.58 0.12 125);
   --secondary-foreground: oklch(1 0 0);
   --muted: oklch(0.2 0.01 45);
   --muted-foreground: oklch(0.65 0 0);
-  --accent: oklch(0.62 0.18 45);
-  --accent-foreground: oklch(1 0 0);
+  --accent: #80aa3c;
+  --accent-foreground: #ffffff;
   --destructive: oklch(0.396 0.141 25.723);
   --destructive-foreground: oklch(1 0 0);
   --border: oklch(0.25 0.01 45);
@@ -195,3 +219,53 @@
   animation-delay: 0.6s;
   animation-fill-mode: backwards;
 }
+
+/* Design tokens adicionales para /servicios */
+:root {
+  --card-border: rgba(15, 23, 42, 0.06);
+  --accent-gradient: linear-gradient(90deg, rgba(241,127,38,0.95), rgba(128,170,60,0.95));
+}
+
+/* Estilos utilitarios para marcos y tarjetas */
+.card-frame {
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--elevation-2);
+  background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.45));
+}
+
+.accent-gradient-bg {
+  background: var(--accent-gradient);
+  color: var(--primary-foreground);
+}
+
+.carousel-overlay-label {
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(6px);
+}
+
+.rounded-2xl-md {
+  border-radius: calc(var(--radius-lg) + 4px);
+}
+
+/* Section utilities */
+.section {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.section-title h2 {
+  margin-bottom: 0.75rem;
+}
+
+.section-title p {
+  margin-bottom: 1.25rem;
+  color: var(--color-muted-foreground);
+}
+
+/* Ensure overlays sit above images but don't affect flow */
+.carousel-overlay-label {
+  z-index: 20;
+}
+
+

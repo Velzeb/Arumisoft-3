@@ -55,8 +55,8 @@ export default function ContactoPage() {
                     <Mail className="w-6 h-6 text-primary" />
                   </div>
                   <h3 className="font-bold text-lg mb-2">Email</h3>
-                  <p className="text-muted-foreground">contacto@devsolutions.com</p>
-                  <p className="text-muted-foreground">ventas@devsolutions.com</p>
+                  <p className="text-muted-foreground">contacto@arumisoft.com</p>
+                  <p className="text-muted-foreground">ventas@arumisoft.com</p>
                 </CardContent>
               </Card>
 
